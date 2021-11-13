@@ -31,20 +31,3 @@ const usePhotos = () => {
 
 export default usePhotos;
 
-// query {
-//   allFile(
-//     filter: {
-//       extension: { eq: "jpg" }
-//       sourceInstanceName: { eq: "images" }
-//     }
-//   ) {
-//     nodes {
-//       id
-//       childImageSharp {
-//         fluid(maxWidth: 120, maxHeight: 120) {
-//           ...GatsbyImageSharpFluid_withWebp
-//         }
-//       }
-//     }
-//   }
-// }

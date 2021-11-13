@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import useProjects from '../hooks/use-projects';
+import usePhotos from '../hooks/use-photos';
 import Image from 'gatsby-image';
 
 const Photo = ({ photo }) => {
@@ -18,14 +18,14 @@ const Photo = ({ photo }) => {
       style={
         isMaximized
           ? {
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              width: '100%',
-              height: '100%',
-              zIndex: 5,
-              backgroundColor: 'black',
-            }
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            zIndex: 5,
+            backgroundColor: 'black',
+          }
           : {}
       }
       onClick={handleClick}
@@ -36,9 +36,10 @@ const Photo = ({ photo }) => {
 };
 
 const Carousel = () => {
-  let photos = useProjects();
+  let photos = usePhotos();
+  console.log('photos', photos);
 
-  React.useEffect(() => {});
+  React.useEffect(() => { });
 
   return (
     <div
@@ -54,33 +55,12 @@ const Carousel = () => {
           /* width: 100%; */
         `}
       >
-        {photos.map((photo) => (
+        {photos.filter(photo => window.location.pathname.includes(photo.directory)).map((photo) => (
           <Photo key={photo.id} photo={photo} />
         ))}
       </div>
     </div>
   );
-
-  //   const handleIndexClick = (event) => {
-  //     let active = +event.target;
-
-  //     return (
-  //       <>
-  //         <div
-  //           css={`
-  //             background-color: black;
-  //             position: absolute;
-  //             top: 0;
-  //             left: 0;
-  //             width: 100%;
-  //             height: 100%;
-  //           `}
-  //         >
-  //           <Image fluid={active} />
-  //         </div>
-  //       </>
-  //     );
-  //   };
 };
 
 export default Carousel;

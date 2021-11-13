@@ -5,7 +5,7 @@ import Image from 'gatsby-image';
 const PhotoReel = () => {
   const photos = usePhotos();
   const padders = Array.from(Array(3 - (photos.length % 3)));
-  //   const padders = _.range(0, 2);
+
 
   return (
     <div
@@ -18,7 +18,6 @@ const PhotoReel = () => {
     >
       <div
         style={{
-          //   marginTop: '30px',
           display: 'flex',
           flexDirection: 'row',
           flexWrap: 'wrap',
