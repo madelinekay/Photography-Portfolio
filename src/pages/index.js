@@ -1,22 +1,15 @@
 import * as React from 'react';
 import PhotoReel from '../components/photo-reel';
-
-// styles
-const pageStyles = {};
+import Layout from '../components/layout';
 
 // markup
 const IndexPage = () => {
   return (
-    <main style={pageStyles}>
-      <div>
-        <div>magda undisz photography</div>
-        <nav>
-          <a>photo reel these will all be their own pages</a>
-          <a>all the things</a>
-        </nav>
+    <>
+      <Layout>
         <PhotoReel />
-      </div>
-    </main>
+      </Layout>
+    </>
   );
 };
 

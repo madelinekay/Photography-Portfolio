@@ -11,6 +11,7 @@ const usePhotos = () => {
       ) {
         nodes {
           id
+          relativeDirectory
           childImageSharp {
             fluid(maxWidth: 480, maxHeight: 480, quality: 100) {
               ...GatsbyImageSharpFluid_withWebp
@@ -23,6 +24,8 @@ const usePhotos = () => {
 
   return data.allFile.nodes.map((node) => ({
     ...node.childImageSharp,
+    id: node.id,
+    directory: node.relativeDirectory,
   }));
 };
 
