@@ -39,7 +39,7 @@ const Carousel = () => {
   let photos = usePhotos();
   console.log('photos', photos);
 
-  React.useEffect(() => { });
+  if (typeof window === 'undefined') return null;
 
   return (
     <div
