@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import usePhotos from '../hooks/use-photos';
+import useCarousel from '../hooks/use-carousel';
 import Image from 'gatsby-image';
 
 const Photo = ({ photo }) => {
@@ -36,7 +36,7 @@ const Photo = ({ photo }) => {
 };
 
 const Carousel = () => {
-  let photos = usePhotos();
+  let photos = useCarousel();
   console.log('photos', photos);
 
   if (typeof window === 'undefined') return null;

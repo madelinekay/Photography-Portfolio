@@ -31,18 +31,18 @@ const PhotoReel = () => {
             style={{
               width: '30%',
               overflow: 'hidden',
-              margin: '20px',
+              margin: '1%',
             }}
           />
         ))}
         {padders.map((_, index) => (
           <div
             key={index}
-            css={`
-              width: 30%;
-              overflow: hidden;
-              margin: 0;
-            `}
+            style={{
+              width: "30%",
+              overflow: 'hidden',
+              margin: "1%",
+            }}
           />
         ))}
       </div>
