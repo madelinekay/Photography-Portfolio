@@ -3,7 +3,8 @@ import usePhotos from '../hooks/use-photos';
 import Image from 'gatsby-image';
 
 const PhotoReel = () => {
-  const photos = usePhotos();
+  const photos = usePhotos("gatsby");
+  console.log('photos', photos);
   const padders = Array.from(Array(3 - (photos.length % 3)));
 
 
@@ -24,17 +25,19 @@ const PhotoReel = () => {
           justifyContent: 'space-evenly',
         }}
       >
-        {photos.map((photo) => (
-          <Image
-            fluid={photo.fluid}
-            key={photo.id}
-            style={{
-              width: '30%',
-              overflow: 'hidden',
-              margin: '1%',
-            }}
-          />
-        ))}
+        {photos
+          // .map(photo => photo
+          .map((photo) => (
+            <Image
+              fluid={photo.fluid}
+              key={photo.id}
+              style={{
+                width: '30%',
+                overflow: 'hidden',
+                margin: '1%',
+              }}
+            />
+          ))}
         {padders.map((_, index) => (
           <div
             key={index}
