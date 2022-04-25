@@ -59,14 +59,16 @@ const Layout = ({ children }) => {
       <div
         css={`
           margin: 0 auto;
-          /* width: 1040px; */
+          padding: 20px 0;
+          width: 68vw;
+
+          @media (max-width: 50rem) {
+            width: 100%;
+            padding: 20px;
+          }
         `}
       >
-        <Header
-          css={`
-            max-width: 90vw;
-          `}
-        />
+        <Header />
         <main>{children}</main>
       </div>
     </>

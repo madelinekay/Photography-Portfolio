@@ -1,54 +1,41 @@
 import React from 'react';
 import usePhotos from '../hooks/use-photos';
 import Image from 'gatsby-image';
+import chunk from 'lodash/chunk'
 
 const PhotoReel = () => {
   const photos = usePhotos("gatsby");
-  console.log('photos', photos);
   const padders = Array.from(Array(3 - (photos.length % 3)));
-
 
   return (
     <div
       style={{
         display: 'flex',
         flexDirection: 'column',
-        maxWidth: '90vw',
+        gap: 20,
         margin: '0 auto',
       }}
     >
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'row',
-          flexWrap: 'wrap',
-          justifyContent: 'space-evenly',
-        }}
-      >
-        {photos
-          // .map(photo => photo
-          .map((photo) => (
-            <Image
-              fluid={photo.fluid}
-              key={photo.id}
-              style={{
-                width: '30%',
-                overflow: 'hidden',
-                margin: '1%',
-              }}
-            />
-          ))}
-        {padders.map((_, index) => (
-          <div
-            key={index}
-            style={{
-              width: "30%",
-              overflow: 'hidden',
-              margin: "1%",
-            }}
-          />
-        ))}
-      </div>
+      {chunk([...photos, ...padders], 3).map(rowPhotos => (
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            gap: 20,
+            justifyContent: 'space-evenly',
+          }}
+        >
+          {rowPhotos
+            .map((photo, index) =>
+              photo ?
+                <Image
+                  fluid={photo.fluid}
+                  key={photo.id}
+                  style={{ flex: 1 }}
+                /> : <div key={index} style={{ flex: 1 }} />
+            )}
+        </div>
+      ))}
     </div>
   );
 };

@@ -30,7 +30,7 @@ const Photo = ({ photo }) => {
       }
       onClick={handleClick}
     >
-      <Image fluid={photo.fluid} key={photo.id} />
+      <Image fluid={photo.fluid} key={photo.id} style={{ cursor: 'pointer' }} />
     </div>
   );
 };
@@ -55,9 +55,11 @@ const Carousel = () => {
           /* width: 100%; */
         `}
       >
-        {photos.filter(photo => window.location.pathname.includes(photo.directory)).map((photo) => (
-          <Photo key={photo.id} photo={photo} />
-        ))}
+        {photos
+          .filter(photo => window.location.pathname.includes(photo.directory))
+          .map((photo) => (
+            <Photo key={photo.id} photo={photo} />
+          ))}
       </div>
     </div>
   );
