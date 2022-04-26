@@ -1,43 +1,53 @@
 import React, { useState } from 'react';
 import useCarousel from '../hooks/use-carousel';
 import Image from 'gatsby-image';
+import styled from 'styled-components';
+
+const Blurb = styled.div`
+        display: block;
+        width: 20vw;
+        flex-shrink: 0;
+        margin-right: 40px;
+`
 
 const Photo = ({ photo }) => {
-  const [isMaximized, setMaximized] = useState(false);
-  const handleClick = () => {
-    setMaximized(!isMaximized);
-  };
+  // const [isMaximized, setMaximized] = useState(false);
+  // const handleClick = () => {
+  //   setMaximized(!isMaximized);
+  // };
   return (
     <div
       css={`
         display: block;
-        width: 55vw;
+        width: 45vw;
         flex-shrink: 0;
         margin-right: 30px;
       `}
-      style={
-        isMaximized
-          ? {
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '100%',
-            zIndex: 5,
-            backgroundColor: 'black',
-          }
-          : {}
-      }
-      onClick={handleClick}
+    // style={
+    //   isMaximized
+    //     ? {
+    //       position: 'absolute',
+    //       top: 0,
+    //       left: 0,
+    //       width: '100%',
+    //       height: '100%',
+    //       zIndex: 5,
+    //       backgroundColor: 'black',
+    //     }
+    //     : {}
+    // }
+    // onClick={handleClick}
     >
-      <Image fluid={photo.fluid} key={photo.id} style={{ cursor: 'pointer' }} />
+      <Image fluid={photo.fluid} key={photo.id} />
     </div>
   );
 };
 
-const Carousel = () => {
-  let photos = useCarousel();
-  console.log('photos', photos);
+const Carousel = (props) => {
+
+  const directoryName = window.location.pathname.split("/")[1].split("%20").join(" ")
+  console.log('directoryName', directoryName);
+  let photos = useCarousel(directoryName);
 
   if (typeof window === 'undefined') return null;
 
@@ -55,8 +65,8 @@ const Carousel = () => {
           /* width: 100%; */
         `}
       >
+        <Blurb>{props.blurb}</Blurb>
         {photos
-          .filter(photo => window.location.pathname.includes(photo.directory))
           .map((photo) => (
             <Photo key={photo.id} photo={photo} />
           ))}

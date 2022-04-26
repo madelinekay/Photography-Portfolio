@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'gatsby';
 import styled from 'styled-components';
 //possibly use
 
-const projects = ["counting sheep", "legacy", "unpacking", "not a college town", "stretching glass", "Mercedes Benz fashion week"]
+const projects = [{ filename: "counting-sheep", name: "counting sheep" }, { filename: "legacy", name: "legacy" }, { filename: "unpacking", name: "unpacking" }, { filename: "not-a-college-town", name: "not a college town" }, { filename: "stretching-glass", name: "stretching glass" }, { filename: "Mercedes-Benz fashion-week", name: "Mercedes Benz fashion week" }]
 
 const NavLink = styled(Link)`
   color: #222;
@@ -78,8 +78,11 @@ const BrandLink = styled(Link)`
 `;
 
 
-const Header = () => (
-  <header
+const Header = () => {
+  const reelClicked = useState(true)
+  const projectsClicked = useState(false)
+
+  return <header
     css={`
       display: flex;
       justify-content: space-between;
@@ -107,11 +110,11 @@ const Header = () => (
           projects
         </Button>
         <DropdownContent>
-          {projects.map(project => <DropdownLink><NavLink to={project}>{project}</NavLink></DropdownLink>)}
+          {projects.map(project => <DropdownLink><NavLink to={project.name}>{project.name}</NavLink></DropdownLink>)}
         </DropdownContent>
       </Dropdown>
     </div>
   </header >
-);
+};
 
 export default Header;
