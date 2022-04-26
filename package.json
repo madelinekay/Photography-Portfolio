@@ -27,6 +27,7 @@
     "lodash": "^4.17.21",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-modal": "^3.14.4",
     "styled-components": "^5.2.1"
   },
   "devDependencies": {

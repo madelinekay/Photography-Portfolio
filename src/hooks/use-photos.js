@@ -24,10 +24,7 @@ const usePhotos = (directory) => {
   `);
 
   // gatsby-1.jpg, gatsby-2.jpg, gatsby-3.jpg, ..., gatsby-10.jpg
-  console.log('data', data);
-
   const filteredNodes = data?.allFile?.nodes.filter(node => node.relativeDirectory === directory)
-  console.log('filteredNodes', filteredNodes);
   const getPosition = string => Number(string.split("-").at(-1))
   const sortedNodes = filteredNodes.sort((a, b) => {
     return getPosition(a.name) - getPosition(b.name)

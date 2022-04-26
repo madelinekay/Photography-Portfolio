@@ -63,7 +63,7 @@ const Carousel = ({ blurb, photos }) => {
           /* width: 100%; */
         `}
       >
-        <Blurb>{blurb}</Blurb>
+        {blurb ? <Blurb>{blurb}</Blurb> : null}
         {photos
           .map((photo) => (
             <Photo key={photo.id} photo={photo} />
