@@ -3,7 +3,15 @@ import { Link } from 'gatsby';
 import styled from 'styled-components';
 //possibly use
 
-const projects = [{ filename: "counting-sheep", name: "counting sheep" }, { filename: "legacy", name: "legacy" }, { filename: "unpacking", name: "unpacking" }, { filename: "not-a-college-town", name: "not a college town" }, { filename: "stretching-glass", name: "stretching glass" }, { filename: "Mercedes-Benz fashion-week", name: "Mercedes Benz fashion week" }]
+const projects = [
+  { filename: "counting-sheep", name: "counting-sheep" },
+  { filename: 'borjomi', name: 'borjomi' },
+  { filename: "legacy", name: "legacy" },
+  { filename: "unpacking", name: "unpacking" },
+  { filename: "not-a-college-town", name: "not a college town" },
+  { filename: "stretching-glass", name: "stretching glass" },
+  { filename: "Mercedes-Benz fashion-week", name: "Mercedes Benz fashion week" }
+]
 
 const NavLink = styled(Link)`
   color: #222;
@@ -14,36 +22,47 @@ const NavLink = styled(Link)`
   text-decoration: none;
   border-bottom: 2px solid rgba(0, 0, 0, 0);
 
-  &.current-page {
+
+    /* border-bottom: ${(props) => '2px solid #222'}; */
+    &.current-page {
     border-bottom: 2px solid #222;
   }
 `;
 
-const DropdownLink = styled.div`
+const DropdownLink = styled(NavLink)`
  color: black;
-  margin: 40px 30px 30px;
+ display: block;
+  padding: 40px 30px 30px;
   text-decoration: none;
   display: block;
   &:hover {
-    border-bottom: 2px solid #222;
+    /* border-bottom: 2px solid #222; */
+    text-decoration: underline;
   }
   `
 
 const DropdownContent = styled.div`
-display: none;
-position: absolute;
+/* margin-top: 30px; */
 background-color: #f9f9f9;
 width: 250px;
 box-shadow: 10px 5px 5px rgba(0,0,0,0.2);
+/* &:hover ${DropdownLink} { background-color: #f1f1f1 } */
+`
+const DropdownContainer = styled.div`
+display: none;
+position: absolute;
 z-index: 1;
 right: 0;
-/* &:hover ${DropdownLink} { background-color: #f1f1f1 } */
+padding-top: 29px;
+/* &:hover ${DropdownContent} {
+  display: block;
+} */
 `
 
 const Dropdown = styled.div`
 position: relative;
 display: inline-block;
-&:hover ${DropdownContent} {
+&:hover ${DropdownContainer} {
   display: block;
 }
 `
@@ -79,8 +98,6 @@ const BrandLink = styled(Link)`
 
 
 const Header = () => {
-  const reelClicked = useState(true)
-  const projectsClicked = useState(false)
 
   return <header
     css={`
@@ -106,12 +123,14 @@ const Header = () => {
 
 
       <Dropdown>
-        <Button>
+        <NavLink disabled={true} to='/projects' activeClassName='current-page' partiallyActive={true}>
           projects
-        </Button>
-        <DropdownContent>
-          {projects.map(project => <DropdownLink><NavLink to={project.name}>{project.name}</NavLink></DropdownLink>)}
-        </DropdownContent>
+        </NavLink>
+        <DropdownContainer>
+          <DropdownContent>
+            {projects.map(project => <DropdownLink key={project.name} to={`/projects/${project.name}`}>{project.name}</DropdownLink>)}
+          </DropdownContent>
+        </DropdownContainer>
       </Dropdown>
     </div>
   </header >

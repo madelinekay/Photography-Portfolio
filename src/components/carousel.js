@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
-import useCarousel from '../hooks/use-carousel';
+import React from 'react';
 import Image from 'gatsby-image';
 import styled from 'styled-components';
 
 const Blurb = styled.div`
-        display: block;
-        width: 20vw;
-        flex-shrink: 0;
-        margin-right: 40px;
+  display: block;
+  width: 35%;
+  flex-shrink: 0;
+  margin-right: 40px;
+  line-height: 1.3;
+  font-size: 14px;
 `
 
 const Photo = ({ photo }) => {
@@ -43,11 +44,8 @@ const Photo = ({ photo }) => {
   );
 };
 
-const Carousel = (props) => {
-
-  const directoryName = window.location.pathname.split("/")[1].split("%20").join(" ")
-  console.log('directoryName', directoryName);
-  let photos = useCarousel(directoryName);
+const Carousel = ({ blurb, photos }) => {
+  console.log('props', { blurb, photos })
 
   if (typeof window === 'undefined') return null;
 
@@ -65,7 +63,7 @@ const Carousel = (props) => {
           /* width: 100%; */
         `}
       >
-        <Blurb>{props.blurb}</Blurb>
+        <Blurb>{blurb}</Blurb>
         {photos
           .map((photo) => (
             <Photo key={photo.id} photo={photo} />
