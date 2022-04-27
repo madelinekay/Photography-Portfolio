@@ -4,18 +4,18 @@ import styled from 'styled-components';
 //possibly use
 
 const projects = [
-  { filename: "counting-sheep", name: "counting-sheep" },
-  { filename: 'borjomi', name: 'borjomi' },
-  { filename: "legacy", name: "legacy" },
-  { filename: "unpacking", name: "unpacking" },
-  { filename: "not-a-college-town", name: "not a college town" },
-  { filename: "stretching-glass", name: "stretching glass" },
-  { filename: "Mercedes-Benz fashion-week", name: "Mercedes Benz fashion week" }
+  { slug: "counting-sheep", name: "Counting sheep" },
+  // { slug: 'borjomi', name: 'borjomi' },
+  { slug: "legacy", name: "Legacy" },
+  // { slug: "unpacking", name: "unpacking" },
+  { slug: "not-a-college-town", name: "Not a college town" },
+  { slug: "stretching-glass", name: "Stretching glass" },
+  { slug: "out-of-bounds", name: "Out of bounds" }
 ]
 
 const NavLink = styled(Link)`
   color: #222;
-  font-size: 25px;
+  font-size: 20px;
   font-weight: ${(props) => props.fontWeight || 'normal'};
   line-height: 1;
   margin: 0 0 0 0;
@@ -32,7 +32,8 @@ const NavLink = styled(Link)`
 const DropdownLink = styled(NavLink)`
  color: black;
  display: block;
-  padding: 40px 30px 30px;
+ font-size: 16px;
+  padding: 10px 30px;
   text-decoration: none;
   display: block;
   &:hover {
@@ -42,7 +43,8 @@ const DropdownLink = styled(NavLink)`
   `
 
 const DropdownContent = styled.div`
-/* margin-top: 30px; */
+padding-top: 20px;
+padding-bottom: 20px;
 background-color: #f9f9f9;
 width: 250px;
 box-shadow: 10px 5px 5px rgba(0,0,0,0.2);
@@ -123,12 +125,12 @@ const Header = () => {
 
 
       <Dropdown>
-        <NavLink disabled={true} to='/projects' activeClassName='current-page' partiallyActive={true}>
+        <NavLink disabled={true} style={{ pointerEvents: "none" }} to='/projects' activeClassName='current-page' partiallyActive={true}>
           projects
         </NavLink>
         <DropdownContainer>
           <DropdownContent>
-            {projects.map(project => <DropdownLink key={project.name} to={`/projects/${project.name}`}>{project.name}</DropdownLink>)}
+            {projects.map(project => <DropdownLink key={project.slug} to={`/projects/${project.slug}`}>{project.name}</DropdownLink>)}
           </DropdownContent>
         </DropdownContainer>
       </Dropdown>
