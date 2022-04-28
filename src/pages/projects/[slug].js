@@ -20,8 +20,10 @@ const projects = [
 const ProjectLayout = (props) => {
     const { slug } = props.params
     const project = projects.find(p => p.slug === slug)
+    if (!project) {
+        return null
+    }
     const photos = useCarousel(slug);
-    console.log('project', project);
 
     return (
         <Layout>
