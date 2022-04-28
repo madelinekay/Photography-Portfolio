@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import Image from 'gatsby-image';
 import styled from 'styled-components';
 
@@ -45,13 +45,19 @@ const Photo = ({ photo }) => {
   );
 };
 
-const Carousel = ({ blurb, photos, activePhoto }) => {
-  console.log('props', { blurb, photos })
+const Carousel = ({ slug, blurb, photos }) => {
+  const scrollContainer = useRef()
+
+  useEffect(() => {
+    console.log('carousel mounted')
+    scrollContainer.current.scrollTo(0, 0)
+  }, [slug])
 
   if (typeof window === 'undefined') return null;
 
   return (
     <div
+      ref={scrollContainer}
       css={`
         max-width: 100vw;
         overflow-x: auto;
