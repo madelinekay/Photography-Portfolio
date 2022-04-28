@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'gatsby';
 import styled from 'styled-components';
 //possibly use
@@ -67,27 +67,6 @@ display: inline-block;
 &:hover ${DropdownContainer} {
   display: block;
 }
-`
-
-const Button = styled.div`
-  /* background-color: #4CAF50;
-  color: white;
-  padding: 16px;
-  font-size: 16px;
-  border: none;
-  cursor: pointer; */
-
-  color: #222;
-  font-size: 25px;
-  font-weight: ${(props) => props.fontWeight || 'normal'};
-  line-height: 1;
-  margin: 0 0 0 0;
-  text-decoration: none;
-  border-bottom: 2px solid rgba(0, 0, 0, 0);
-
-  &.current-page {
-    border-bottom: 2px solid #222;
-  }
 `
 
 const BrandLink = styled(Link)`

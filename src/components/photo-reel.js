@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Image from 'gatsby-image';
 import chunk from 'lodash/chunk'
 import Modal from 'react-modal'
@@ -6,7 +6,6 @@ import styled from 'styled-components';
 
 
 import usePhotos from '../hooks/use-photos';
-import Carousel from './carousel';
 import useCarousel from '../hooks/use-carousel';
 
 Modal.setAppElement('#___gatsby');
@@ -23,23 +22,24 @@ const ChevronRightIcon = ({ size = 20 }) => (
   </svg>
 )
 
-const CloseIcon = ({ size = 20 }) => (
-  <svg style={{ width: size, height: size }} xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-  </svg>
-)
+// const CloseIcon = ({ size = 20 }) => (
+//   <svg style={{ width: size, height: size }} xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+//     <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+//   </svg>
+// )
 
-const IconButton = styled.div`
+const IconButton = styled.button`
   background: none;
-  padding: 0;
+  border: 0;
+  padding: 10px;
   margin: 0;
   line-height: 1;
   user-select: none;
+  visibility: ${({ disabled }) => disabled ? `hidden` : `visible`}
 `
 
 const ReelCarousel = ({ activePhotoIndex, setActivePhotoIndex }) => {
   const photos = useCarousel("reel");
-  const activePhoto = photos[activePhotoIndex]
 
   // useEffect((e) => {
   //   document.addEventListener('keydown', (e) => {
@@ -58,7 +58,7 @@ const ReelCarousel = ({ activePhotoIndex, setActivePhotoIndex }) => {
     <Modal
       isOpen={activePhotoIndex !== null}
       onRequestClose={() => setActivePhotoIndex(null)}
-      style={{ content: { background: 'none', border: 'none', width: '55vw', left: '50%', marginLeft: '-27.5vw' } }}
+      style={{ content: { background: 'none', border: 'none', width: '65vw', left: '50%', marginLeft: '-32.5vw' } }}
     // onClick={() => console.log('hi')}
     >
       <div style={{ height: '100%' }} onClick={(e) => {
@@ -76,17 +76,17 @@ const ReelCarousel = ({ activePhotoIndex, setActivePhotoIndex }) => {
             disabled={activePhotoIndex <= 0}
             onClick={() => setActivePhotoIndex(activePhotoIndex - 1)}
           >
-            <ChevronLeftIcon size={40} />
+            <ChevronLeftIcon size={60} />
           </IconButton>
           <div style={{ flex: 1, maxHeight: '100%' }}>
             {activePhotoIndex !== null ? <Image fluid={photos[activePhotoIndex].fluid} /> : null}
           </div>
           <IconButton
             type='button'
-            disabled={activePhotoIndex <= 0}
+            disabled={activePhotoIndex >= photos.length - 1}
             onClick={() => setActivePhotoIndex(activePhotoIndex + 1)}
           >
-            <ChevronRightIcon size={40} />
+            <ChevronRightIcon size={60} />
           </IconButton>
           {/* <Carousel photos={photos} activePhoto={activePhoto} /> */}
         </div>
@@ -107,7 +107,7 @@ const PhotoReel = () => {
         style={{
           display: 'flex',
           flexDirection: 'column',
-          gap: 10,
+          gap: 18,
           margin: '0 auto',
         }}
       >
@@ -117,7 +117,7 @@ const PhotoReel = () => {
             style={{
               display: 'flex',
               flexDirection: 'row',
-              gap: 20,
+              gap: 25,
               justifyContent: 'space-evenly',
             }}
           >

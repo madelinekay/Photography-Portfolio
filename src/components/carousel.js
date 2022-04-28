@@ -73,7 +73,9 @@ const Carousel = ({ blurb, photos, activePhoto }) => {
           /* width: 100%; */
         `}
       >
-        {blurb ? <Blurb>{blurb}</Blurb> : null}
+        {blurb
+          ? <Blurb><div dangerouslySetInnerHTML={{ __html: blurb.replace(/\n/g, "<br /><br />") }}></div></Blurb>
+          : null}
         {photos
           .map((photo) => (
             <Photo key={photo.id} photo={photo} />
