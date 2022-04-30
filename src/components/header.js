@@ -80,41 +80,49 @@ const BrandLink = styled(Link)`
 
 
 const Header = () => (
-  <header
-    css={`
-    display: flex;
+  <Headroom>
+    <div
+      css={`
+        margin: 0 auto;
+        padding: 20px 0;
+        width: 68vw; 
+        display: flex;
+        background: white;
     justify-content: space-between;
     align-items: center;
-    margin: 0 auto;
-    max-width: "50%";
-    `}
-  >
 
-    <BrandLink to='/'>
-      Magda Undisz
-    </BrandLink>
+        @media (max-width: 50rem) {
+          width: 100%;
+          padding: 20px;
+        }
+    `}>
 
-    <div css={`
+      <BrandLink to='/'>
+        Magda Undisz
+      </BrandLink>
+
+      <div css={`
       display: flex;
       gap: 60px;
     `}>
-      <NavLink to="/" activeClassName="current-page">
-        photo reel
-      </NavLink>
-
-
-      <Dropdown>
-        <NavLink disabled={true} style={{ pointerEvents: "none" }} to='/projects' activeClassName='current-page' partiallyActive={true}>
-          projects
+        <NavLink to="/" activeClassName="current-page">
+          photo reel
         </NavLink>
-        <DropdownContainer>
-          <DropdownContent>
-            {projects.map(project => <DropdownLink key={project.slug} to={`/projects/${project.slug}`}>{project.name}</DropdownLink>)}
-          </DropdownContent>
-        </DropdownContainer>
-      </Dropdown>
+
+
+        <Dropdown>
+          <NavLink disabled={true} style={{ pointerEvents: "none" }} to='/projects' activeClassName='current-page' partiallyActive={true}>
+            projects
+          </NavLink>
+          <DropdownContainer>
+            <DropdownContent>
+              {projects.map(project => <DropdownLink key={project.slug} to={`/projects/${project.slug}`}>{project.name}</DropdownLink>)}
+            </DropdownContent>
+          </DropdownContainer>
+        </Dropdown>
+      </div>
     </div>
-  </header >
+  </Headroom >
 
 );
 

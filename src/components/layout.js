@@ -61,36 +61,14 @@ const Layout = ({ children }) => {
   return (
     <>
       <GlobalStyle />
-      <div
-        // style={shouldShowHeader ? { position: 'relative' } : { position: 'fixed' }}
-        css={`
-        z-index: 1;
-        background: #fff;
-        width: 100%;
-        position: fixed;
-        /* position: ${shouldShowHeader ? 'fixed' : 'relative'}}; */
-        `}
-      >
-        <div
-          css={`
-          margin: 0 auto;
-          padding: 20px 0;
-          width: 68vw; 
 
-          @media (max-width: 50rem) {
-            width: 100%;
-            padding: 20px;
-          }
-      `}>
-          <Header />
-        </div>
-      </div>
+
+      <Header />
       <div
         css={`
           margin: 0 auto;
-          padding: 20px 0;
+          padding: 40px 0;
           width: 68vw;
-          padding-top: 100px;
 
           @media (max-width: 50rem) {
             width: 100%;
