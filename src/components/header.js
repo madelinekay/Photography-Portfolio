@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'gatsby';
 import styled from 'styled-components';
+import Headroom from "react-headroom"
 //possibly use
 
 const projects = [
@@ -78,16 +79,14 @@ const BrandLink = styled(Link)`
 `;
 
 
-const Header = () => {
-
-  return <header
+const Header = () => (
+  <header
     css={`
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin: 0 auto 60px;
-      max-width: "50%";
-      position: "fixed";
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    max-width: "50%";
     `}
   >
 
@@ -116,6 +115,7 @@ const Header = () => {
       </Dropdown>
     </div>
   </header >
-};
+
+);
 
 export default Header;
