@@ -87,6 +87,7 @@ const Header = () => {
       align-items: center;
       margin: 0 auto 60px;
       max-width: "50%";
+      position: "fixed";
     `}
   >
 

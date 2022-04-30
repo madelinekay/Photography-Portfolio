@@ -25,7 +25,10 @@ const usePhotos = (directory) => {
 
   // gatsby-1.jpg, gatsby-2.jpg, gatsby-3.jpg, ..., gatsby-10.jpg
   const filteredNodes = data?.allFile?.nodes.filter(node => node.relativeDirectory === directory)
-  const getPosition = string => Number(string.split("-").at(-1))
+  const getPosition = (string) => {
+    let strings = string.split("-")
+    return Number(strings[strings.length - 1])
+  }
   const sortedNodes = filteredNodes.sort((a, b) => {
     return getPosition(a.name) - getPosition(b.name)
   })

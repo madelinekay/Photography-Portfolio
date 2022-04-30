@@ -24,7 +24,10 @@ const useCarousel = (directory) => {
   `);
 
   const filteredNodes = data?.allFile?.nodes.filter(node => node.relativeDirectory === directory)
-  const getPosition = string => Number(string.split("-").at(-1))
+  const getPosition = (string) => {
+    let strings = string.split("-")
+    return Number(strings[strings.length - 1])
+  }
   const sortedNodes = filteredNodes.sort((a, b) => {
     return getPosition(a.name) - getPosition(b.name)
   })
