@@ -10,6 +10,19 @@ import useCarousel from '../hooks/use-carousel';
 
 Modal.setAppElement('#___gatsby');
 
+const GatsbyImage = ({ className, children }) => (
+  <a className={className}>
+    {children}
+  </a>
+);
+
+const Photo = styled(GatsbyImage)`
+.gatsby-image-wrapper > div[aria-hidden="true"] {
+  display: none;
+}
+`;
+
+
 const ChevronLeftIcon = ({ size = 20 }) => (
   <svg style={{ width: size, height: size }} xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
     <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
@@ -107,7 +120,7 @@ const PhotoReel = () => {
         style={{
           display: 'flex',
           flexDirection: 'column',
-          gap: 18,
+          gap: 25,
           margin: '0 auto',
         }}
       >
@@ -132,7 +145,7 @@ const PhotoReel = () => {
                     }}
                     style={{ flex: 1, cursor: 'pointer' }}
                   >
-                    <Image fluid={photo.fluid} imgStyle={{ maxHeight: 300 }} />
+                    <Image fluid={photo.fluid} />
                   </div> : <div key={index} style={{ flex: 1 }} />
               )}
           </div>
