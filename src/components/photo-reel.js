@@ -67,42 +67,48 @@ const ReelCarousel = ({ activePhotoIndex, setActivePhotoIndex }) => {
   //   })
   // }, [])
 
+  const modalStyle = {
+    content: {
+      top: '50%',
+      left: '50%',
+      background: 'none',
+      border: 'none',
+      width: '65vw',
+      height: '38vw',
+      transform: 'translate(-50%, -50%)',
+      padding: 0,
+    },
+  };
   return (
     <Modal
       isOpen={activePhotoIndex !== null}
       onRequestClose={() => setActivePhotoIndex(null)}
-      style={{ content: { background: 'none', border: 'none', width: '65vw', left: '50%', marginLeft: '-32.5vw' } }}
-    // onClick={() => console.log('hi')}
+      style={modalStyle}
     >
-      <div style={{ height: '100%' }} onClick={(e) => {
+      <div style={{ display: 'flex', alignItems: 'center' }} onClick={(e) => {
         if (e.target === e.currentTarget) {
           setActivePhotoIndex(null)
         }
       }}>
 
-        {/* <div style={{ textAlign: 'right' }}>
-        <IconButton onClick={() => setActivePhotoIndex(null)}><CloseIcon size={30} /></IconButton>
-      </div> */}
-        <div style={{ display: 'flex', alignItems: 'center' }}>
-          <IconButton
-            type='button'
-            disabled={activePhotoIndex <= 0}
-            onClick={() => setActivePhotoIndex(activePhotoIndex - 1)}
-          >
-            <ChevronLeftIcon size={60} />
-          </IconButton>
-          <div style={{ flex: 1, maxHeight: '100%' }}>
-            {activePhotoIndex !== null ? <Image fluid={photos[activePhotoIndex].fluid} /> : null}
-          </div>
-          <IconButton
-            type='button'
-            disabled={activePhotoIndex >= photos.length - 1}
-            onClick={() => setActivePhotoIndex(activePhotoIndex + 1)}
-          >
-            <ChevronRightIcon size={60} />
-          </IconButton>
-          {/* <Carousel photos={photos} activePhoto={activePhoto} /> */}
+        <IconButton
+          type='button'
+          disabled={activePhotoIndex <= 0}
+          onClick={() => setActivePhotoIndex(activePhotoIndex - 1)}
+        >
+          <ChevronLeftIcon size={60} />
+        </IconButton>
+        <div style={{ flex: 1, maxHeight: '100%' }}>
+          {activePhotoIndex !== null ? <Image fluid={photos[activePhotoIndex].fluid} /> : null}
         </div>
+        <IconButton
+          type='button'
+          disabled={activePhotoIndex >= photos.length - 1}
+          onClick={() => setActivePhotoIndex(activePhotoIndex + 1)}
+        >
+          <ChevronRightIcon size={60} />
+        </IconButton>
+        {/* <Carousel photos={photos} activePhoto={activePhoto} /> */}
       </div>
 
     </Modal>
