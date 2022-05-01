@@ -2,24 +2,41 @@ import { graphql, useStaticQuery } from 'gatsby';
 
 const useCarousel = (directory) => {
   const data = useStaticQuery(graphql`{
-  allFile(filter: {extension: {eq: "jpg"}, sourceInstanceName: {eq: "images"}}) {
-    nodes {
-      id
-      name
-      relativeDirectory
-      childImageSharp {
-        gatsbyImageData(quality: 100, layout: FULL_WIDTH)
+    allFile(filter: {extension: {eq: "jpg"}, sourceInstanceName: {eq: "images"}}) {
+      nodes {
+        id
+        name
+        relativeDirectory
+        childImageSharp {
+          gatsbyImageData(quality: 100, layout: FULL_WIDTH)
+        }
       }
     }
   }
-}
-`);
+  `);
+
+  //   const data = useStaticQuery(graphql`{
+  //     allFile(filter: {
+  //       extension: {eq: "jpg"},
+  //       sourceInstanceName: {eq: "images"}
+  //     }) {
+  //       nodes {
+  //         id
+  //         name
+  //         relativeDirectory
+  //         childImageSharp {
+  //           gatsbyImageData(quality: 100, height: 320, layout: CONSTRAINED)
+  //         }
+  //       }
+  //     }
+  //   }
+  // `);
 
 
   const filteredNodes = data?.allFile?.nodes.filter(node => node.relativeDirectory === directory)
   const getPosition = (string) => {
     let strings = string.split("-")
-    return Number(strings[strings.length - 1])
+    return Number(strings[1])
   }
   const sortedNodes = filteredNodes.sort((a, b) => {
     return getPosition(a.name) - getPosition(b.name)
@@ -28,13 +45,9 @@ const useCarousel = (directory) => {
   return sortedNodes.map((node) => ({
     ...node.childImageSharp,
     id: node.id,
+    name: node.name,
     directory: node.relativeDirectory,
   }));
-  // return data.allFile.nodes.map((node) => ({
-  //     ...node.childImageSharp,
-  //     id: node.id,
-  //     directory: node.relativeDirectory,
-  // }));
 };
 
 export default useCarousel;

@@ -6,18 +6,12 @@ module.exports = {
   plugins: [
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
+    'gatsby-plugin-image',
     {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'images',
         path: 'images',
-      },
-    },
-    {
-      resolve: 'gatsby-source-filesystem',
-      options: {
-        name: 'background-images',
-        path: 'images/borjomi',
       },
     },
     {

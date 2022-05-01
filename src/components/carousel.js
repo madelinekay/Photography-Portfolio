@@ -53,7 +53,6 @@ const Carousel = ({ slug, blurb, photos }) => {
   const scrollContainer = useRef()
 
   useEffect(() => {
-    console.log('carousel mounted')
     scrollContainer.current.scrollTo(0, 0)
   }, [slug])
 
