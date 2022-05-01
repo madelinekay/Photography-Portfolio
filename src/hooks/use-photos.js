@@ -14,7 +14,7 @@ const usePhotos = (directory) => {
           name
           relativeDirectory
           childImageSharp {
-            fluid(maxWidth: 480, maxHeight: 480, quality: 100) {
+            fluid(maxWidth: 480, maxHeight: 480, quality: 80) {
               ...GatsbyImageSharpFluid_withWebp
             }
           }
@@ -32,6 +32,9 @@ const usePhotos = (directory) => {
   const sortedNodes = filteredNodes.sort((a, b) => {
     return getPosition(a.name) - getPosition(b.name)
   })
+
+
+
 
   return sortedNodes.map((node) => ({
     ...node.childImageSharp,

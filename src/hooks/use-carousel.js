@@ -23,6 +23,7 @@ const useCarousel = (directory) => {
     }
   `);
 
+
   const filteredNodes = data?.allFile?.nodes.filter(node => node.relativeDirectory === directory)
   const getPosition = (string) => {
     let strings = string.split("-")
