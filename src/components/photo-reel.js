@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Image from 'gatsby-image';
+import { GatsbyImage } from "gatsby-plugin-image";
 import chunk from 'lodash/chunk'
 import Modal from 'react-modal'
 import styled from 'styled-components';
@@ -10,11 +10,11 @@ import useCarousel from '../hooks/use-carousel';
 
 Modal.setAppElement('#___gatsby');
 
-const GatsbyImage = ({ className, children }) => (
-  <a className={className}>
-    {children}
-  </a>
-);
+// const GatsbyImage = ({ className, children }) => (
+//   <a className={className}>
+//     {children}
+//   </a>
+// );
 
 
 const ChevronLeftIcon = ({ size = 20 }) => (
@@ -94,7 +94,7 @@ const ReelCarousel = ({ activePhotoIndex, setActivePhotoIndex }) => {
           <ChevronLeftIcon size={60} />
         </IconButton>
         <div style={{ flex: 1, maxHeight: '100%' }}>
-          {activePhotoIndex !== null ? <Image fluid={photos[activePhotoIndex].fluid} /> : null}
+          {activePhotoIndex !== null ? <GatsbyImage image={photos.childImageSharp.gatsbyImageData} /> : null}
         </div>
         <IconButton
           type='button'
@@ -107,7 +107,7 @@ const ReelCarousel = ({ activePhotoIndex, setActivePhotoIndex }) => {
       </div>
 
     </Modal>
-  )
+  );
 }
 
 const PhotoReel = () => {
@@ -115,54 +115,52 @@ const PhotoReel = () => {
   const photos = usePhotos("gatsby");
   const padders = Array.from(Array(3 - (photos.length % 3)));
 
-  return (
-    <>
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          gap: 25,
-          margin: '0 auto',
-        }}
-      >
-        {chunk([...photos, ...padders], 3).map((rowPhotos, rowIndex) => (
-          <div
-            key={rowIndex}
-            style={{
-              display: 'flex',
-              flexDirection: 'row',
-              gap: 25,
-              justifyContent: 'space-evenly',
-            }}
-          >
-            {rowPhotos
-              .map((photo, index) =>
-                photo ?
-                  <div
-                    key={photo.id}
-                    onClick={() => {
-                      setActivePhotoIndex(rowIndex * 3 + index)
-                    }}
-                    style={{ flex: 1, cursor: 'pointer' }}
-                  >
-                    <Image fluid={photo.fluid} />
-                  </div> : <div key={index} style={{ flex: 1 }} />
-              )}
-          </div>
-        ))}
-      </div>
-      <ReelCarousel activePhotoIndex={activePhotoIndex} setActivePhotoIndex={setActivePhotoIndex} />
+  return <>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 25,
+        margin: '0 auto',
+      }}
+    >
+      {chunk([...photos, ...padders], 3).map((rowPhotos, rowIndex) => (
+        <div
+          key={rowIndex}
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            gap: 25,
+            justifyContent: 'space-evenly',
+          }}
+        >
+          {rowPhotos
+            .map((photo, index) =>
+              photo ?
+                <div
+                  key={photo.id}
+                  onClick={() => {
+                    setActivePhotoIndex(rowIndex * 3 + index)
+                  }}
+                  style={{ flex: 1, cursor: 'pointer' }}
+                >
+                  <GatsbyImage image={photo.gatsbyImageData} />
+                </div> : <div key={index} style={{ flex: 1 }} />
+            )}
+        </div>
+      ))}
+    </div>
+    <ReelCarousel activePhotoIndex={activePhotoIndex} setActivePhotoIndex={setActivePhotoIndex} />
 
-      <footer
-        css={`
-          padding: 120px 0 40px;
-          text-align: center;
-          `}
-      >
-        <div>All images copyright &copy; 2022 Magda Undisz</div>
-      </footer>
-    </>
-  );
+    <footer
+      css={`
+        padding: 120px 0 40px;
+        text-align: center;
+        `}
+    >
+      <div>All images copyright &copy; 2022 Magda Undisz</div>
+    </footer>
+  </>;
 };
 
 export default PhotoReel;

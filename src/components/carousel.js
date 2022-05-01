@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import Image from 'gatsby-image';
+import { GatsbyImage } from "gatsby-plugin-image";
 import styled from 'styled-components';
 
 const Blurb = styled.div`
@@ -40,7 +40,11 @@ const Photo = ({ photo }) => {
     // }
     // onClick={handleClick}
     >
-      <Image fluid={photo.fluid} key={photo.id} style={{ maxHeight: '100%' }} imgStyle={{ objectFit: 'contain' }} />
+      <GatsbyImage
+        image={photo.gatsbyImageData}
+        key={photo.id}
+        style={{ maxHeight: '100%' }}
+        imgStyle={{ objectFit: 'contain' }} />
     </div>
   );
 };

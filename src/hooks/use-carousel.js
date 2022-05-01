@@ -1,27 +1,19 @@
 import { graphql, useStaticQuery } from 'gatsby';
 
 const useCarousel = (directory) => {
-  const data = useStaticQuery(graphql`
-    query {
-      allFile(
-        filter: {
-          extension: { eq: "jpg" }
-          sourceInstanceName: { eq: "images" }
-        }
-      ) {
-        nodes {
-          id
-          name
-          relativeDirectory
-          childImageSharp {
-            fluid(quality: 100) {
-              ...GatsbyImageSharpFluid_withWebp
-            }
-          }
-        }
+  const data = useStaticQuery(graphql`{
+  allFile(filter: {extension: {eq: "jpg"}, sourceInstanceName: {eq: "images"}}) {
+    nodes {
+      id
+      name
+      relativeDirectory
+      childImageSharp {
+        gatsbyImageData(quality: 100, layout: FULL_WIDTH)
       }
     }
-  `);
+  }
+}
+`);
 
 
   const filteredNodes = data?.allFile?.nodes.filter(node => node.relativeDirectory === directory)

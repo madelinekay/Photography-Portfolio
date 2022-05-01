@@ -1,27 +1,19 @@
 import { graphql, useStaticQuery } from 'gatsby';
 
 const usePhotos = (directory) => {
-  const data = useStaticQuery(graphql`
-    query {
-      allFile( 
-        filter: {
-          extension: { eq: "jpg" }
-          sourceInstanceName: { eq: "images" }
-        }
-      ) {
-        nodes {
-          id
-          name
-          relativeDirectory
-          childImageSharp {
-            fluid(maxWidth: 480, maxHeight: 480, quality: 80) {
-              ...GatsbyImageSharpFluid_withWebp
-            }
-          }
-        }
+  const data = useStaticQuery(graphql`{
+  allFile(filter: {extension: {eq: "jpg"}, sourceInstanceName: {eq: "images"}}) {
+    nodes {
+      id
+      name
+      relativeDirectory
+      childImageSharp {
+        gatsbyImageData(width: 480, height: 480, quality: 80, layout: CONSTRAINED)
       }
     }
-  `);
+  }
+}
+`);
 
   // gatsby-1.jpg, gatsby-2.jpg, gatsby-3.jpg, ..., gatsby-10.jpg
   const filteredNodes = data?.allFile?.nodes.filter(node => node.relativeDirectory === directory)
