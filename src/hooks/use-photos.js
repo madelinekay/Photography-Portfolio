@@ -33,9 +33,6 @@ const usePhotos = (directory) => {
     return getPosition(a.name) - getPosition(b.name)
   })
 
-
-
-
   return sortedNodes.map((node) => ({
     ...node.childImageSharp,
     id: node.id,

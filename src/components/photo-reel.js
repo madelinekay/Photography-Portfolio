@@ -54,6 +54,7 @@ const IconButton = styled.button`
 const ReelCarousel = ({ activePhotoIndex, setActivePhotoIndex }) => {
   const photos = useCarousel("reel");
 
+
   // useEffect((e) => {
   //   document.addEventListener('keydown', (e) => {
   //     if (e.key === 'ArrowRight') {
@@ -146,7 +147,6 @@ const PhotoReel = () => {
                   <div
                     key={photo.id}
                     onClick={() => {
-                      console.log('set active photo')
                       setActivePhotoIndex(rowIndex * 3 + index)
                     }}
                     style={{ flex: 1, cursor: 'pointer' }}
@@ -158,6 +158,15 @@ const PhotoReel = () => {
         ))}
       </div>
       <ReelCarousel activePhotoIndex={activePhotoIndex} setActivePhotoIndex={setActivePhotoIndex} />
+
+      <footer
+        css={`
+          padding: 120px 0 40px;
+          text-align: center;
+          `}
+      >
+        <div>All images copyright &copy; 2022 Magda Undisz</div>
+      </footer>
     </>
   );
 };

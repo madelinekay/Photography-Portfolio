@@ -22,7 +22,6 @@ body {
     'Segoe UI Emoji', 'Segoe UI Symbol';
   font-size: 18px;
   line-height: 1.4;
-  height: 100%;
 
   /* remove margin for the main div that Gatsby mounts into */
   > div {
@@ -30,7 +29,6 @@ body {
   }
 }
 
-#___gatsby, #gatsby-focus-wrapper { height: 100%; }
 
 h1,
 h2,
@@ -56,7 +54,8 @@ li {
 `;
 
 const Layout = ({ children }) => {
-  const [shouldShowHeader, setShowHeader] = useState(true)
+  // const [shouldShowHeader, setShowHeader] = useState(true)
+
 
   return (
     <>
@@ -66,12 +65,9 @@ const Layout = ({ children }) => {
       <Header />
       <div
         css={`
-          height: 100%;
           margin: 0 auto;
           padding: 40px 0;
           width: 68vw;
-          display: flex;
-          flex-direction: column;
 
           @media (max-width: 50rem) {
             width: 100%;
@@ -80,15 +76,7 @@ const Layout = ({ children }) => {
         `}
       >
 
-        <main css={`flex: 1;`}>{children}</main>
-        <footer
-          css={`
-          padding: 80px 0;
-          text-align: center;
-          `}
-        >
-          <div>All images copyright &copy; 2022 Magda Undisz</div>
-        </footer>
+        <main>{children}</main>
       </div>
     </>
   );

@@ -32,6 +32,7 @@
     "styled-components": "^5.2.1"
   },
   "devDependencies": {
+    "jest": "^28.0.3",
     "prettier": "2.2.1"
   },
   "volta": {
