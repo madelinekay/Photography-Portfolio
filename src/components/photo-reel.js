@@ -42,9 +42,11 @@ const ReelCarousel = ({ activePhoto, onPrevPhoto, onNextPhoto, onClose }) => {
       background: 'none',
       border: 'none',
       width: '65vw',
-      height: '38vw',
+      /* height: '38vw', */
+      height: "65vh",
       transform: 'translate(-50%, -50%)',
       padding: 0,
+
     },
   };
 
@@ -66,7 +68,7 @@ const ReelCarousel = ({ activePhoto, onPrevPhoto, onNextPhoto, onClose }) => {
           <ChevronLeftIcon size={60} />
         </IconButton>
 
-        <div style={{ flex: 1, maxHeight: '100%' }}>
+        <div style={{ flex: 1, maxHeight: '100%', textAlign: 'center' }}>
           {activePhoto !== null ? <GatsbyImage image={getImage(photo)} alt="" /> : null}
         </div>
 

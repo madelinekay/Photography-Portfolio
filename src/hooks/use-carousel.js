@@ -8,29 +8,12 @@ const useCarousel = (directory) => {
         name
         relativeDirectory
         childImageSharp {
-          gatsbyImageData(quality: 100, layout: FULL_WIDTH)
+          gatsbyImageData(quality: 100, height: 500, layout: CONSTRAINED)
         }
       }
     }
   }
   `);
-
-  //   const data = useStaticQuery(graphql`{
-  //     allFile(filter: {
-  //       extension: {eq: "jpg"},
-  //       sourceInstanceName: {eq: "images"}
-  //     }) {
-  //       nodes {
-  //         id
-  //         name
-  //         relativeDirectory
-  //         childImageSharp {
-  //           gatsbyImageData(quality: 100, height: 320, layout: CONSTRAINED)
-  //         }
-  //       }
-  //     }
-  //   }
-  // `);
 
 
   const filteredNodes = data?.allFile?.nodes.filter(node => node.relativeDirectory === directory)

@@ -20,7 +20,9 @@ const Photo = ({ photo }) => {
     <div
       css={`
         display: block;
-        width: 45vw;
+        /* width: 43vw; */
+        /* height: 60vh; */
+
         /* height: 30vw;   */
         flex-shrink: 0;
         margin-right: 30px;

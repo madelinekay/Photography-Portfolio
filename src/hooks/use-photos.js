@@ -19,6 +19,7 @@ const usePhotos = () => {
 }
 `);
 
+
   const getPosition = (string) => {
     let strings = string.split("-")
     return Number(strings[strings.length - 2])
